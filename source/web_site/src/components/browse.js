@@ -148,7 +148,7 @@ class Browse extends Component {
 
 		var page_numbers = pages.map((page, index) => {
 			return (
-				<PaginationItem active={this.state.current_page === { page }.page} key={index}>
+				<PaginationItem active={this.state.current_page == page} key={index}>
 					<PaginationLink href="#" id={page} onClick={this.ChangePage}>
 						{page}
 					</PaginationLink>
