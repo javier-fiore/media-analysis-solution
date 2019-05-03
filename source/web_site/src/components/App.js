@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Amplify, { Auth, Storage, API } from 'aws-amplify';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink as RRNavLink, Link} from 'react-router-dom';
 import { NavbarBrand, Navbar, Nav, NavItem, NavLink } from 'reactstrap';
 import Upload from './upload';
 import Browse from './browse';
@@ -41,7 +41,6 @@ class App extends Component {
     this.state = {};
   }
 
-
   render() {
     return (
       <div>
@@ -54,16 +53,16 @@ class App extends Component {
               </NavbarBrand>
               <Nav className="ml-auto">
                 <NavItem>
-                  <NavLink tag={Link} to="/live" className="text-light">Live</NavLink>
+                  <NavLink tag={RRNavLink} to="/live" className="text-light" activeClassName="active">Live</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/" className="text-light">Media</NavLink>
+                  <NavLink tag={RRNavLink} to="/" className="text-light" activeClassName="active" exact>Media</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/collection" className="text-light">Collection</NavLink>
+                  <NavLink tag={RRNavLink} to="/collection" className="text-light" activeClassName="active">Collection</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/settings" className="text-light">Settings</NavLink>
+                  <NavLink tag={RRNavLink} to="/settings" className="text-light" activeClassName="active">Settings</NavLink>
                 </NavItem>
               </Nav>
             </Navbar>
