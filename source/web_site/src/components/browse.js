@@ -194,7 +194,9 @@ class Browse extends Component {
 							<Input name="searchterm" type="text" value={this.searchterm} placeholder="keyword..." onChange={this.Change} />
 						</FormGroup>
 					</Form>
-					<button className="btn btn-link" onClick={this.toggleModal}>Add Media</button>
+					<div className="pt-2">
+						<button className="btn btn-primary" onClick={this.toggleModal}>Add Media</button>
+    				</div>
 				</div>
 				<Container>
 					<Row>
