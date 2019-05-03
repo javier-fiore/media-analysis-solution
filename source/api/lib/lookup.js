@@ -579,7 +579,7 @@ let lookup = (function() {
 
           let s3_params = {
             Bucket: s3Bucket,
-            Key: ['private',owner_id,'media',object_id,'results','transcript.json'].join('/')
+            Key: ['private',owner_id,'media',object_id,'results','transcript-intl.json'].join('/')
           };
 
           retrieveData(s3_params, owner_id, object_id, 'captions', page_num, function(err, data) {
@@ -594,7 +594,7 @@ let lookup = (function() {
                 const Captions = Object.keys(captions_data.results).reduce((lastValue, lang) => {
                     const data = captions_data.results[lang];
 
-                    const results = data.items.map((item) => ({Content: item[0].content, Timestamp: item.start_time * 1000}));
+                    const results = data.items.map((item) => ({Content: item.alternatives[0].content, Timestamp: item.start_time * 1000}));
 
                     return {...lastValue, [lang]: results};
                 }, {});
