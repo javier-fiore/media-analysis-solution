@@ -1,3 +1,7 @@
 .brand-image {
   height: 34px;
 }
+
+.active{
+  background: grey;
+}
