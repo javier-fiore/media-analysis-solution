@@ -76,7 +76,7 @@ class Browse extends Component {
 						searching: false,
 						noresults: false,
 						result_count: response.total,
-						page_count: Math.ceil(response.total / 30)
+						page_count: Math.ceil(response.total / 6)
 					});
 				}
 				else {
@@ -207,7 +207,7 @@ class Browse extends Component {
 					<Pagination className="pb-2 justify-content-end">
 						{page_numbers}
 					</Pagination>
-					<h6 align="right">Viewing {((this.state.current_page - 1) * 30) + media_cards.length} of {this.state.result_count} results</h6>
+					<h6 align="right">Viewing {((this.state.current_page - 1) * 6) + media_cards.length} of {this.state.result_count} results</h6>
 				</div>
 			</Container>
 
