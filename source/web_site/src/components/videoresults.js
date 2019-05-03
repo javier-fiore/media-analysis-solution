@@ -279,7 +279,7 @@ class VideoResults extends Component {
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Persons", boxes: this.props.persons }); }}>Persons</Button>
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Faces", boxes: this.props.allfaces }); }}>Faces</Button>
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Celebrities", boxes: this.props.celebvideo }); }}>Celebrities</Button>
-              <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Known Faces", boxes: this.props.allknownfaces }); }}>Known Faces</Button>
+              <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Known collection", boxes: this.props.allknownfaces }); }}>Known Collection</Button>
             </div>
           </Col>
         </Row>
@@ -294,7 +294,7 @@ class VideoResults extends Component {
                   <NavLink active={this.state.activeTab === "faces"} onClick={() => { this.tabToggle('faces'); }}>Facial Attributes</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink active={this.state.activeTab === "face_matches"} onClick={() => { this.tabToggle('face_matches'); }}>Known Faces</NavLink>
+                  <NavLink active={this.state.activeTab === "face_matches"} onClick={() => { this.tabToggle('face_matches'); }}>Known Collection</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink active={this.state.activeTab === "celebs"} onClick={() => { this.tabToggle('celebs'); }}>Celebrities</NavLink>

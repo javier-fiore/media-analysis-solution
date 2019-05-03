@@ -2,6 +2,6 @@
   height: 34px;
 }
 
-.active{
+.nav-item .active{
   background: grey;
 }

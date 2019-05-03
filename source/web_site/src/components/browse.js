@@ -4,6 +4,7 @@ import { withAuthenticator } from 'aws-amplify-react';
 import { Alert, Container, Row, Col, Form, FormGroup, Input, Button, Modal, ModalHeader, Progress, ModalBody, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import MediaCard from './mediacard';
 import UploadMedia from './UploadMedia';
+import StatusModal from './statusmodal';
 
 class Browse extends Component {
 	constructor(props) {
@@ -19,7 +20,8 @@ class Browse extends Component {
 			fileExt: null,
 			objectid: null,
 			page_count: 1,
-			result_count: 0
+			result_count: 0,
+			uuid : null
 		}
 		this.Search = this.Search.bind(this);
 		this.Change = this.Change.bind(this);
