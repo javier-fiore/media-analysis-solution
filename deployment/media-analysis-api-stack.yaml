@@ -41,7 +41,7 @@ Resources:
             MemorySize: 256
             Environment:
                 Variables:
-                    CONFIDENCE_SCORE: '0.9'
+                    CONFIDENCE_SCORE: '80'
                     DOMAIN_ENDPOINT: !Ref DomainEndpoint
                     ES_INDEX: media-analysis
                     S3_BUCKET: !Ref S3Bucket
