@@ -4,8 +4,6 @@ import { Card, CardBody, CardSubtitle, CardHeader, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import preview from '../img/preview.png';
-import audio from '../img/audio.png';
-import video from '../img/video.png';
 
 class MediaCard extends Component {
   constructor(props) {
@@ -40,23 +38,21 @@ class MediaCard extends Component {
     return(
       <div>
           <Card className="text-center" body outline color="secondary">
-            <CardHeader style={{"whiteSpace":"nowrap","textOverflow": "ellipsis","overflow": "hidden"}}>{name}</CardHeader>
+            <CardHeader style={{"whiteSpace":"nowrap","textOverflow": "ellipsis","overflow": "hidden"}} title={name}>{name}</CardHeader>
             <CardBody>
-              <div className="mt-2 mb-2" style={{"height":"300px", "display": "flex", "justifyContent": "center", "alignItems": "center"}}>
+              <div className="mt-2 mb-2" style={{"display": "flex", "justifyContent": "center", "alignItems": "center"}}>
                 {(this.props.item.file_type === "jpg" || this.props.item.file_type === "jpeg" || this.props.item.file_type === "png") &&
-                  <img alt="preview" src={this.state.media} style={{"width":"100%","height":"auto","maxHeight":"300px"}}/>
+                  <img alt="preview" src={this.state.media} style={{"height":"auto","maxHeight":"150px"}}/>
                 }
                 {(this.props.item.file_type === "wav" || this.props.item.file_type === "wave" || this.props.item.file_type === "flac" || this.props.item.file_type === "mp3") &&
-                  <div style={{"width":"100%","height":"auto","maxHeight":"300px"}}>
-                    <img alt="preview" src={audio} style={{"width":"100%","height":"auto"}}/>
-                    <audio src={this.state.media} controls style={{"width":"100%"}}/>
+                  <div style={{"width":"100%","height":"auto","maxHeight":"150px"}}>
+                    <audio src={this.state.media} controls style={{"height":"150px","width":"100%"}}/>
                   </div>
                 }
                 {(this.props.item.file_type === "mp4" || this.props.item.file_type === "mov") &&
-                  <video src={this.state.media} controls style={{"width":"100%","height":"auto","maxHeight":"300px"}}/>
+                  <video src={this.state.media} controls style={{"height":"auto","maxHeight":"150px"}}/>
                 }
               </div>
-              <CardSubtitle style={{"whiteSpace":"nowrap","textOverflow": "ellipsis","overflow": "hidden"}}>{file_type}</CardSubtitle>
                 <div className="pt-2">
                   <Link to={result_link}>
                     <Button color="primary">View Results</Button>
