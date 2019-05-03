@@ -48,7 +48,7 @@ class App extends Component {
         <Router>
           <div>
             <Navbar color="dark">
-              <NavbarBrand tag={Link} to="/home">
+              <NavbarBrand tag={Link} to="/">
                 <img alt="Media Analysis Solution" src={nubityIcon} className="brand-image"  />
                 <span className="ml-2 text-white">Nubity media solution</span>
               </NavbarBrand>
