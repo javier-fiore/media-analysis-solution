@@ -155,20 +155,22 @@ class Result extends Component {
                 }
                 if (self.state.file_type === 'mp4' || self.state.file_type === 'mov') {
                   for (var a in data.Attributes) {
-                      att_video[data.Attributes[a].Name] = {"Name":data.Attributes[a].Name,"Impressions":{}};
+                      att_video[data.Attributes[a].Name] = {"Name":data.Attributes[a].Name,"Impressions":{}, 'ConfidenceAverage': 0, 'ConfidenceSum': 0};
                       //att_video[data.Attributes[a].Name]["Impressions"] = {};
                       var att_count = 0;
                       for (var i in data.Attributes[a].Impressions) {
-
                         if (att_video[data.Attributes[a].Name].Impressions.hasOwnProperty(Math.ceil((data.Attributes[a].Impressions[i].Timestamp)/100)*100)) {
                             att_video[data.Attributes[a].Name].Impressions[Math.ceil((data.Attributes[a].Impressions[i].Timestamp)/100)*100][att_count] = {"BoundingBox":data.Attributes[a].Impressions[i].BoundingBox, "Confidence":data.Attributes[a].Impressions[i].Confidence};
+                            att_video[data.Attributes[a].Name].ConfidenceSum += data.Attributes[a].Impressions[i].Confidence;
                         }
                         else {
                             att_video[data.Attributes[a].Name].Impressions[Math.ceil((data.Attributes[a].Impressions[i].Timestamp)/100)*100] = {};
                             att_video[data.Attributes[a].Name].Impressions[Math.ceil((data.Attributes[a].Impressions[i].Timestamp)/100)*100][att_count] = {"BoundingBox":data.Attributes[a].Impressions[i].BoundingBox, "Confidence":data.Attributes[a].Impressions[i].Confidence};
+                            att_video[data.Attributes[a].Name].ConfidenceSum += data.Attributes[a].Impressions[i].Confidence;
                         }
                         att_count += 1;
                       }
+                      att_video[data.Attributes[a].Name].ConfidenceAverage = att_video[data.Attributes[a].Name].ConfidenceSum / att_count;
                   }
                   for (var i in att_video) {
                       att_list.push(att_video[i]);
