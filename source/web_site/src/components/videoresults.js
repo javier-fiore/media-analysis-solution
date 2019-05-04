@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withAuthenticator } from 'aws-amplify-react';
-import { Container, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap';
+import { Container, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Button, UncontrolledTooltip } from 'reactstrap';
 //import play from '../img/play.png';
 //import pause from '../img/pause.png';
 //import restart from '../img/restart.png';
@@ -218,7 +218,14 @@ class VideoResults extends Component {
     var translate = this.props.translate;
 
     var atts = this.props.attributes.map((att, index) => {
-      return (<Button key={index} color="primary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.setState({ focusing: att.Name, boxes: att.Impressions }); }}>{att.Name}</Button>)
+      return (
+      <div style={{"display":"inline-block"}} key={index}>
+        <Button id={att.Name.replace(/\s+/g, '-').toLowerCase()} color="secondary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.setState({ focusing: att.Name, boxes: att.Impressions }); }}>{att.Name}</Button>
+        <UncontrolledTooltip placement="top" target={att.Name.replace(/\s+/g, '-').toLowerCase()}>
+          {att.ConfidenceAverage.toFixed(3)}
+        </UncontrolledTooltip>
+      </div>
+      )
     });
 
     var celebs = this.props.individualcelebs.map((celeb, index) => {
@@ -310,7 +317,7 @@ class VideoResults extends Component {
             <div align="center">
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Persons", boxes: this.props.persons }); }}>Persons</Button>
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Faces", boxes: this.props.allfaces }); }}>Faces</Button>
-              <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Celebrities", boxes: this.props.celebvideo }); }}>Celebrities</Button>
+              {/*<Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Celebrities", boxes: this.props.celebvideo }); }}>Celebrities</Button>*/}
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Known collection", boxes: this.props.allknownfaces }); }}>Known Collection</Button>
             </div>
           </Col>
@@ -328,9 +335,9 @@ class VideoResults extends Component {
                 <NavItem>
                   <NavLink active={this.state.activeTab === "face_matches"} onClick={() => { this.tabToggle('face_matches'); }}>Known Collection</NavLink>
                 </NavItem>
-                <NavItem>
+                { /* <NavItem>
                   <NavLink active={this.state.activeTab === "celebs"} onClick={() => { this.tabToggle('celebs'); }}>Celebrities</NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                   <NavLink active={this.state.activeTab === "transcript"} onClick={() => { this.tabToggle('transcript'); }}>Transcript</NavLink>
                 </NavItem>
