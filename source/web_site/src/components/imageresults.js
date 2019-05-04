@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withAuthenticator } from 'aws-amplify-react';
-import { Container, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap';
+import { Container, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Button, UncontrolledTooltip } from 'reactstrap';
 
 class ImageResults extends Component {
   constructor(props) {
@@ -113,10 +113,19 @@ class ImageResults extends Component {
     var media_source = this.props.mediafile;
     var labels = this.props.labels;
 
-
-    let atts = this.props.attlist.map(att => {
-        return(<Button color="primary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.draw(att.Impressions); }}>{att.Name}</Button>)
-    });
+    let atts = this.props.attlist.map((att, index) => {
+      return(
+        <div style={{"display":"inline-block"}} key={index}>
+          <Button id={att.Name.replace(/\s+/g, '-').toLowerCase()} color="primary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.draw(att.Impressions); }}>{att.Name}</Button>
+          <UncontrolledTooltip placement="top" target={att.Name.replace(/\s+/g, '-').toLowerCase()}>
+              {att.Impressions.map(value => {
+                return value.Confidence.toFixed(3);
+              }
+            )}
+          </UncontrolledTooltip>
+        </div>
+        )
+      });
 
     let celeb_faces = this.props.celebfaces.map(celeb => {
         return(<Button color="primary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.draw(celeb.Impressions); }}>{celeb.Name}</Button>)
@@ -140,7 +149,6 @@ class ImageResults extends Component {
         }
     }
 
-
         return (
           <Container>
             <Row>
@@ -162,9 +170,9 @@ class ImageResults extends Component {
                   <hr className="my-2" />
                 </div>
                 <div align="center">
-                  <Button color="primary" className="mr-2 mt-3" active onClick={() => { this.draw(all_known_faces); }}>Show Known Faces</Button>
-                  <Button color="primary" className="mr-2 mt-3" active onClick={() => { this.draw(this.props.allfaces); }}>Show All Faces</Button>
-                  <Button color="primary" className="mr-2 mt-3" active onClick={() => { this.draw(all_celebs); }}>Show Celebrities</Button>
+                  <Button color="primary" className="mr-2 mt-3" active onClick={() => { this.draw(all_known_faces); }}>Known Collection</Button>
+                  <Button color="primary" className="mr-2 mt-3" active onClick={() => { this.draw(this.props.allfaces); }}>Faces</Button>
+                  {/*<Button color="primary" className="mr-2 mt-3" active onClick={() => { this.draw(all_celebs); }}>Show Celebrities</Button>*/}
                 </div>
                 <div align="center">
                   <Button color="secondary" className="mt-3" onClick={() => { this.draw([]); }}>Clear All</Button>
@@ -182,11 +190,11 @@ class ImageResults extends Component {
                       <NavLink active={this.state.activeTab === "faces"} onClick={() => { this.tabToggle('faces'); }}>Facial Attributes</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink active={this.state.activeTab === "face_matches"} onClick={() => { this.tabToggle('face_matches'); }}>Known Faces</NavLink>
+                      <NavLink active={this.state.activeTab === "face_matches"} onClick={() => { this.tabToggle('face_matches'); }}>Known Collection</NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/*<NavItem>
                       <NavLink active={this.state.activeTab === "celebs"} onClick={() => { this.tabToggle('celebs'); }}>Celebrities</NavLink>
-                    </NavItem>
+                    </NavItem>*/}
                   </Nav>
                   <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="labels">

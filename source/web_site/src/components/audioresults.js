@@ -126,7 +126,7 @@ class AudioResults extends Component {
           setTimeout(function(){
               audio.currentTime = 0;
               audio.play();
-              audio.draw();
+              self.draw();
           }, 20);
       }
   }

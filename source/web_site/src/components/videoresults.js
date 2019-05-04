@@ -220,7 +220,7 @@ class VideoResults extends Component {
     var atts = this.props.attributes.map((att, index) => {
       return (
       <div style={{"display":"inline-block"}} key={index}>
-        <Button id={att.Name.replace(/\s+/g, '-').toLowerCase()} color="secondary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.setState({ focusing: att.Name, boxes: att.Impressions }); }}>{att.Name}</Button>
+        <Button id={att.Name.replace(/\s+/g, '-').toLowerCase()} color="primary" className="ml-1 mr-1 mb-1 mt-1" onClick={() => { this.setState({ focusing: att.Name, boxes: att.Impressions }); }}>{att.Name}</Button>
         <UncontrolledTooltip placement="top" target={att.Name.replace(/\s+/g, '-').toLowerCase()}>
           {att.ConfidenceAverage.toFixed(3)}
         </UncontrolledTooltip>
@@ -255,7 +255,7 @@ class VideoResults extends Component {
         </Row>
         <Row>
           <Col md="8">
-            <div id="resultview" align="center" className='mb-3' style={{ "overflow": "scroll", "maxWidth": "750px", "maxHeight": "400px" }}>
+            <div id="resultview" align="center" className='mb-3' style={{ "overflow": "scroll", "maxWidth": "750px", "maxHeight": "400px", "margin-top":"20px" }}>
               <video id="resultvid" src={media_source} className="img-fluid" />
             </div>
           </Col>
@@ -263,11 +263,10 @@ class VideoResults extends Component {
             <div>
               <h5>Current focus:</h5>
               <h6 align="center">{this.state.focusing}</h6>
-              <hr className="mt-2 mb-6" />
             </div>
             <div>
-              <h5>Controls:</h5>
               <hr className="my-2" />
+              <h5>Controls:</h5>
             </div>
             <div align="center">
               <Button className="mr-2 my-2" color="info" onClick={() => { this.videoControl('play'); }}>Play</Button>
@@ -275,8 +274,8 @@ class VideoResults extends Component {
               <Button className="mr-2 my-2" color="info" onClick={() => { this.videoControl('restart'); }}>Restart</Button>
             </div>
             <div>
-              <h5>Captions:</h5>
               <hr className="my-2" />
+              <h5>Captions:</h5>
             </div>
             <div align="center">
               {
@@ -311,8 +310,8 @@ class VideoResults extends Component {
               }
             </div>
             <div>
-              <h5>Click to focus:</h5>
               <hr className="my-2" />
+              <h5>Click to focus:</h5>
             </div>
             <div align="center">
               <Button color="primary" className="mr-2 mt-2" onClick={() => { this.setState({ focusing: "Persons", boxes: this.props.persons }); }}>Persons</Button>
