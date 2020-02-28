@@ -565,7 +565,7 @@ let lookup = (function() {
                 const Captions = Object.keys(captions_data.results).reduce((lastValue, lang) => {
                     const data = captions_data.results[lang];
 
-                    const results = data.items.map((item) => ({Content: item.alternatives[0].content, Timestamp: item.start_time * 1000}));
+                    const results = data.items.map((item) => ({Content: item.alternatives[0].content, Timestamp: item.start_time * 1000, TimestampEnd: item.end_time * 1000}));
 
                     return {...lastValue, [lang]: results};
                 }, {});
